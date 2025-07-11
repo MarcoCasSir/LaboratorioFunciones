@@ -42,6 +42,27 @@ function avance(): void {
   }
 }
 
+/* -------------------------------------------FUNCION  XRA BOTON RESET -------------------------*/
+
+function reset(): void {
+  // lee el numero del turno
+
+  let number = (document.getElementById("numero-turno") as HTMLElement)
+    .textContent;
+
+  // resetea el numero a zero
+
+  if (number !== null && number !== undefined) {
+    let modificado = 0;
+
+    const resultado = document.getElementById("numero-turno");
+
+    if (resultado !== null && resultado !== undefined) {
+      resultado.textContent = modificado.toString().padStart(2, "0");
+    }
+  }
+}
+
 /* -------------------------------------------EVENTOS CLICK DE LOS BOTONES -------------------------*/
 
 const botonAvanzar = document.getElementById("btn1");
@@ -54,4 +75,10 @@ const botonRetroceder = document.getElementById("btn2");
 
 if (botonRetroceder !== null && botonRetroceder !== undefined) {
   botonRetroceder.addEventListener("click", retroceder);
+}
+
+const botonReset = document.getElementById("btn3");
+
+if (botonReset !== null && botonReset !== undefined) {
+  botonReset.addEventListener("click", reset);
 }
