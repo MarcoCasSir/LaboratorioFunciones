@@ -28,7 +28,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.numero-turno {
+#numero-turno {
   font-size: 6rem;
   font-weight: bold;
   margin: 0;
@@ -39,6 +39,40 @@
   font-weight: bold;
   margin: 0;
   text-align: center;
+}
+
+#botonera {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+button {
+  border: #646cff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.nuevo-turno-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: 6rem;
+}
+
+.nuevo-numero {
+  font-size: 6rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+#btn4 {
+  margin-top: 2rem;
 }
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
