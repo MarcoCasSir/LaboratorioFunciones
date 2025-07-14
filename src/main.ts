@@ -82,3 +82,25 @@ const botonReset = document.getElementById("btn3");
 if (botonReset !== null && botonReset !== undefined) {
   botonReset.addEventListener("click", reset);
 }
+
+/* -------------------------------------------FUNCION INTRODUCIR NUEVO NUMERO ------------------------*/
+
+function nuevoNumero(): void {
+  const numeroNuevo = (
+    document.getElementById("nuevo-numero") as HTMLInputElement
+  ).value;
+
+  if (numeroNuevo !== null && numeroNuevo !== undefined) {
+    document.getElementById("numero-turno").textContent = numeroNuevo
+      .toString()
+      .padStart(2, "0");
+
+    (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
+  }
+}
+
+const botonCambiar = document.getElementById("btn4");
+
+if (botonCambiar !== null && botonCambiar !== undefined) {
+  botonCambiar.addEventListener("click", nuevoNumero);
+}
