@@ -104,11 +104,11 @@ function nuevoNumero(): void {
         .padStart(2, "0");
 
       (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
+    } else {
+      console.log(alert("el numero no puede ser negativo"));
+
+      (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
     }
-
-    console.log(alert("el numero no puede ser negativo"));
-
-    (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
   }
 }
 
