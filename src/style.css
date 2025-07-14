@@ -65,10 +65,14 @@ button {
   margin-top: 6rem;
 }
 
-.nuevo-numero {
-  font-size: 6rem;
+#nuevo-numero {
+  font-size: 3rem;
+  padding: 5px 5px;
   font-weight: bold;
-  margin: 0;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
 }
 
 #btn4 {
