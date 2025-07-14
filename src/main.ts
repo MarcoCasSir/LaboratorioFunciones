@@ -9,14 +9,19 @@ function retroceder(): void {
     .textContent;
 
   // resta una unidad al numero actual del turno y muestra el resultado con dos digitos (.padStart)
+  // condicional para que el numero no pueda ser negativo
 
   if (number !== null && number !== undefined) {
-    let modificado = parseInt(number) - 1;
+    let valorActual = parseInt(number);
 
-    const resultado = document.getElementById("numero-turno");
+    if (valorActual > 0) {
+      let modificado = parseInt(number) - 1;
 
-    if (resultado !== null && resultado !== undefined) {
-      resultado.textContent = modificado.toString().padStart(2, "0");
+      const resultado = document.getElementById("numero-turno");
+
+      if (resultado !== null && resultado !== undefined) {
+        resultado.textContent = modificado.toString().padStart(2, "0");
+      }
     }
   }
 }
@@ -91,9 +96,17 @@ function nuevoNumero(): void {
   ).value;
 
   if (numeroNuevo !== null && numeroNuevo !== undefined) {
-    document.getElementById("numero-turno").textContent = numeroNuevo
-      .toString()
-      .padStart(2, "0");
+    let valorActual = parseInt(numeroNuevo);
+
+    if (valorActual >= 0) {
+      document.getElementById("numero-turno").textContent = numeroNuevo
+        .toString()
+        .padStart(2, "0");
+
+      (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
+    }
+
+    console.log(alert("el numero no puede ser negativo"));
 
     (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
   }
