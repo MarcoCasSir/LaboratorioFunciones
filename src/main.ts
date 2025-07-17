@@ -1,91 +1,82 @@
 import "./style.css";
 
+document.addEventListener("DOMContentLoaded", () => {
+  pintarNumero(turno);
+  eventos();
+});
+
+let turno = 0;
+
+const pintarNumero = (turno: number): void => {
+  const numeroTurno = document.getElementById("numero-turno");
+  if (numeroTurno) {
+    const numeroFormateado = turno.toString().padStart(2, "0");
+    numeroTurno.textContent = numeroFormateado;
+  } else {
+    console.error("Elemento 'numero-turno' no encontrado.");
+  }
+};
+
 /* -------------------------------------------FUNCION  XRA BOTON RETROCEDER -------------------------*/
 
 function retroceder(): void {
-  // lee el numero del turno
-
   let number = (document.getElementById("numero-turno") as HTMLElement)
     .textContent;
 
-  // resta una unidad al numero actual del turno y muestra el resultado con dos digitos (.padStart)
-  // condicional para que el numero no pueda ser negativo
+  let modificado = parseInt(number);
 
-  if (number !== null && number !== undefined) {
-    let valorActual = parseInt(number);
-
-    if (valorActual > 0) {
-      let modificado = parseInt(number) - 1;
-
-      const resultado = document.getElementById("numero-turno");
-
-      if (resultado !== null && resultado !== undefined) {
-        resultado.textContent = modificado.toString().padStart(2, "0");
-      }
-    }
+  if (modificado > 0) {
+    turno = modificado - 1;
+  } else {
+    turno = 0;
   }
+
+  pintarNumero(turno);
 }
 
 /* -------------------------------------------FUNCION  XRA BOTON AVANCE -------------------------*/
 
 function avance(): void {
-  // lee el numero del turno
-
   let number = (document.getElementById("numero-turno") as HTMLElement)
     .textContent;
 
-  // suma una unidad al numero actual del turno y muestra el resultado con dos digitos (.padStart)
+  let modificado = parseInt(number);
 
-  if (number !== null && number !== undefined) {
-    let modificado = parseInt(number) + 1;
+  turno = modificado + 1;
 
-    const resultado = document.getElementById("numero-turno");
-
-    if (resultado !== null && resultado !== undefined) {
-      resultado.textContent = modificado.toString().padStart(2, "0");
-    }
-  }
+  pintarNumero(turno);
 }
 
 /* -------------------------------------------FUNCION  XRA BOTON RESET -------------------------*/
 
 function reset(): void {
-  // lee el numero del turno
+  const resultado = document.getElementById("numero-turno");
 
-  let number = (document.getElementById("numero-turno") as HTMLElement)
-    .textContent;
-
-  // resetea el numero a zero
-
-  if (number !== null && number !== undefined) {
-    let modificado = 0;
-
-    const resultado = document.getElementById("numero-turno");
-
-    if (resultado !== null && resultado !== undefined) {
-      resultado.textContent = modificado.toString().padStart(2, "0");
-    }
+  if (resultado) {
+    resultado.textContent = "0".padStart(2, "0");
   }
 }
 
 /* -------------------------------------------EVENTOS CLICK DE LOS BOTONES -------------------------*/
 
-const botonAvanzar = document.getElementById("btn1");
+function eventos() {
+  const botonAvanzar = document.getElementById("btn1");
 
-if (botonAvanzar !== null && botonAvanzar !== undefined) {
-  botonAvanzar.addEventListener("click", avance);
-}
+  if (botonAvanzar) {
+    botonAvanzar.addEventListener("click", avance);
+  }
 
-const botonRetroceder = document.getElementById("btn2");
+  const botonRetroceder = document.getElementById("btn2");
 
-if (botonRetroceder !== null && botonRetroceder !== undefined) {
-  botonRetroceder.addEventListener("click", retroceder);
-}
+  if (botonRetroceder) {
+    botonRetroceder.addEventListener("click", retroceder);
+  }
 
-const botonReset = document.getElementById("btn3");
+  const botonReset = document.getElementById("btn3");
 
-if (botonReset !== null && botonReset !== undefined) {
-  botonReset.addEventListener("click", reset);
+  if (botonReset) {
+    botonReset.addEventListener("click", reset);
+  }
 }
 
 /* -------------------------------------------FUNCION INTRODUCIR NUEVO NUMERO ------------------------*/
@@ -105,7 +96,7 @@ function nuevoNumero(): void {
 
       (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
     } else {
-      console.log(alert("el numero no puede ser negativo"));
+      console.log(alert("introduce un numero positivo"));
 
       (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
     }
@@ -114,6 +105,6 @@ function nuevoNumero(): void {
 
 const botonCambiar = document.getElementById("btn4");
 
-if (botonCambiar !== null && botonCambiar !== undefined) {
+if (botonCambiar) {
   botonCambiar.addEventListener("click", nuevoNumero);
 }
