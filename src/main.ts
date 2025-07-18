@@ -20,13 +20,8 @@ const pintarNumero = (turno: number): void => {
 /* -------------------------------------------FUNCION  XRA BOTON RETROCEDER -------------------------*/
 
 function retroceder(): void {
-  let number = (document.getElementById("numero-turno") as HTMLElement)
-    .textContent;
-
-  let modificado = parseInt(number);
-
-  if (modificado > 0) {
-    turno = modificado - 1;
+  if (turno > 0) {
+    turno = turno - 1;
   } else {
     turno = 0;
   }
@@ -34,26 +29,42 @@ function retroceder(): void {
   pintarNumero(turno);
 }
 
-/* -------------------------------------------FUNCION  XRA BOTON AVANCE -------------------------*/
+/* -------------------------------------------FUNCION  XRA BOTON AVANCE ----------------------------*/
 
 function avance(): void {
-  let number = (document.getElementById("numero-turno") as HTMLElement)
-    .textContent;
-
-  let modificado = parseInt(number);
-
-  turno = modificado + 1;
+  turno = turno + 1;
 
   pintarNumero(turno);
 }
 
-/* -------------------------------------------FUNCION  XRA BOTON RESET -------------------------*/
+/* -------------------------------------------FUNCION  XRA BOTON RESET -----------------------------*/
 
 function reset(): void {
-  const resultado = document.getElementById("numero-turno");
+  turno = 0;
 
-  if (resultado) {
-    resultado.textContent = "0".padStart(2, "0");
+  pintarNumero(turno);
+}
+
+/* -------------------------------------------FUNCION INTRODUCIR NUEVO NUMERO ------------------------*/
+
+function nuevoNumero(): void {
+  const numeroNuevo = (
+    document.getElementById("nuevo-numero") as HTMLInputElement
+  ).value;
+
+  if (numeroNuevo !== null && numeroNuevo !== undefined) {
+    let valorActual = parseInt(numeroNuevo);
+
+    if (valorActual >= 0) {
+      turno = valorActual;
+      pintarNumero(turno);
+
+      (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
+    } else {
+      console.log(alert("introduce un numero positivo"));
+
+      (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
+    }
   }
 }
 
@@ -77,34 +88,10 @@ function eventos() {
   if (botonReset) {
     botonReset.addEventListener("click", reset);
   }
-}
 
-/* -------------------------------------------FUNCION INTRODUCIR NUEVO NUMERO ------------------------*/
+  const botonCambiar = document.getElementById("btn4");
 
-function nuevoNumero(): void {
-  const numeroNuevo = (
-    document.getElementById("nuevo-numero") as HTMLInputElement
-  ).value;
-
-  if (numeroNuevo !== null && numeroNuevo !== undefined) {
-    let valorActual = parseInt(numeroNuevo);
-
-    if (valorActual >= 0) {
-      document.getElementById("numero-turno").textContent = numeroNuevo
-        .toString()
-        .padStart(2, "0");
-
-      (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
-    } else {
-      console.log(alert("introduce un numero positivo"));
-
-      (document.getElementById("nuevo-numero") as HTMLInputElement).value = "";
-    }
+  if (botonCambiar) {
+    botonCambiar.addEventListener("click", nuevoNumero);
   }
-}
-
-const botonCambiar = document.getElementById("btn4");
-
-if (botonCambiar) {
-  botonCambiar.addEventListener("click", nuevoNumero);
 }
